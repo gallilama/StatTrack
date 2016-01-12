@@ -1,2 +1,2 @@
 # StatTrack
-Table top statistics tracker
+Statistics tracker for table top gaming
