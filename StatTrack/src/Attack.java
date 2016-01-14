@@ -2,6 +2,7 @@ import java.util.*;
 
 public class Attack {
 
+	public AttackType attackType;
 	public boolean hit = false;				// Did this attack hit its target
 	public boolean boostHit = false;		// Was this attack boosted to hit the target
 	public int hitDice = 2;					// Number of dice rolled to hit target
@@ -18,15 +19,21 @@ public class Attack {
 	public Attack(){}
 	
 	// Used for standard 2D6 attack roll and damage rolls
-	public Attack(int HRoll, boolean H, int DRoll, int DDealt){
+	public Attack(AttackType AType, int HRoll, boolean H, int DRoll, int DDealt){
+		attackType = AType;
 		hitRoll = HRoll;
 		hit = H;
 		dmgRoll = DRoll;
 		dmgDealt = DDealt;
+		
+//		if(!checkData(hitDice, HRoll, dmgDice, DRoll, DDealt)){
+//			System.out.println("Invalid data was passed. Please input valid data");
+//			System.exit(0);
+//		}
 	}
 	
 	//Used for charge attacks, boosted attacks, and attack with additional dice
-	public Attack(boolean BHit, int HDice, int HRoll, boolean H,
+	public Attack(AttackType AType, boolean BHit, int HDice, int HRoll, boolean H,
 			boolean BDmg, int DDice, int DRoll, int DDealt){
 		
 		if(!checkData(HDice, HRoll, DDice, DRoll, DDealt)){
@@ -34,7 +41,7 @@ public class Attack {
 			System.exit(0);
 		}
 			
-		
+		attackType = AType;
 		boostHit = BHit;
 		hitDice = HDice;
 		hitRoll = HRoll;
@@ -62,9 +69,13 @@ public class Attack {
 			return false;
 		if(DRoll < DDice || DRoll > (DDice * MAX_DIE_ROLL))
 			return false;
-		if(DDealt > DRoll)
-			return false;
+//		if(DDealt > DRoll) 		//This check was throwing the invalid data error
+//			return false;
 		return true;
+	}
+	
+	public void setAttackType(AttackType a){
+		attackType = a;
 	}
 	
 	public void setHit(boolean hit) {
@@ -101,8 +112,8 @@ public class Attack {
 
 	@Override
 	public String toString() {
-		String str = String.format("%-10b %-9d %-9d  %-7b %-10b %-9d %-9d %-10d",
-				boostHit, hitDice, hitRoll, hit, boostDmg, dmgDice, dmgRoll, dmgDealt);
+		String str = String.format("%-10s %-10b %-9d %-9d  %-7b %-10b %-9d %-9d %-10d",
+				attackType, boostHit, hitDice, hitRoll, hit, boostDmg, dmgDice, dmgRoll, dmgDealt);
 	
 		return str;
 	}
@@ -124,15 +135,31 @@ public class Attack {
 			int dmgDice = 0;
 			int dmgRoll = 0;
 			int dmgDealt = 0;
-			if(hit == true){
+			if(hit){
 				boostDmg = rand.nextBoolean();
 				dmgDice = rand.nextInt(2) + 2;
 				if(boostDmg)
 					dmgDice++;
-				dmgRoll = rand.nextInt(dmgDice * 6 - hitDice) + hitDice;
-				dmgDealt = rand.nextInt(19);
+				dmgRoll = rand.nextInt(dmgDice * 6 - dmgDice) + dmgDice + 1;
+				dmgDealt = rand.nextInt(dmgDice * 6 - dmgDice) + dmgDice;
 			}
-			Attack a = new Attack(boostHit, hitDice, hitRoll, hit, boostDmg, dmgDice, dmgRoll, dmgDealt);
+			Attack a = new Attack(AttackType.getRandom(), boostHit, hitDice, hitRoll, hit, boostDmg, dmgDice, dmgRoll, dmgDealt);
+			System.out.println(a);
+		}
+		
+		for (int i = 0; i < 25; i++){
+			int hitDice = 2;
+			int hitRoll = rand.nextInt(hitDice * 6 - hitDice) + hitDice;
+			boolean hit = rand.nextBoolean();
+			int dmgDice = 0;
+			int dmgRoll = 0;
+			int dmgDealt = 0;
+			if(hit){;
+				dmgDice = 2;
+				dmgRoll = rand.nextInt(dmgDice * 6 - dmgDice) + dmgDice + 1;
+				dmgDealt = rand.nextInt(dmgDice * 6 - dmgDice) + dmgDice;
+			}
+			Attack a = new Attack(AttackType.getRandom(), hitRoll, hit, dmgRoll, dmgDealt);
 			System.out.println(a);
 		}
 	}
