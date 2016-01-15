@@ -1,8 +1,15 @@
+import java.util.ArrayList;
 
+/**
+ * @author kylehoff
+ * Class to Store a model or Unit's name, status, and attack pool
+ */
 public class ModelUnit {
 
-	String name = "Untitled";
-	Attack[] attacks = new Attack[50];
+	public String name = "Untitled";
+	public String destroyedMessage = "The model is destroyed and cannot make attacks";
+	public ArrayList<Attack> attacks = new ArrayList<Attack>();
+	public boolean destroyed = false;
 	
 	
 	// CONSTRUCTORS
@@ -17,38 +24,60 @@ public class ModelUnit {
 	// METHODS
 	
 	/**
-	 * Create a melee attack and add it to the attacks array
+	 * Set the model's status to destroyed
 	 */
-	public void meleeAttack(){
-		
+	public void destroyed(){
+		destroyed = true;
 	}
 	
-	/**
-	 * Create a ranged attack and add it to the attacks array
-	 */
-	public void rangedAttack(){
-		
-	}
-	
-	/**
-	 * Create a magic attack and add it to the attacks array
-	 */
-	public void magicAttack(){
-		
-	}
-	
-	/**
-	 * Double the size of the attacks array
-	 */
-	private void doubleAttacks(){
-		
-	}
-	
-	/**
-	 * Check to see if the attacks array is full
-	 * @return true if the array is full
-	 */
-	private boolean isfull(){
+	public boolean isDestroyed(){
+		if(destroyed)
+			return true;
 		return false;
+	}
+	
+	/**
+	 * Create a melee attack and add it to the attacks arrayList
+	 */
+	public void meleeAttack(boolean BHit, int HDice, int HRoll,
+			boolean H, boolean BDmg, int DDice, int DRoll, int DDealt){
+		
+		if(isDestroyed()){	//If destroyed print message and do not make attack
+			System.out.println(destroyedMessage);
+			return;
+		}
+		
+		attacks.add(new Attack(AttackType.MELEE,BHit, HDice, HRoll, H,
+				BDmg, DDice, DRoll, DDealt));
+	}
+	
+	/**
+	 * Create a ranged attack and add it to the attacks arrayList
+	 */
+	public void rangedAttack(boolean BHit, int HDice, int HRoll,
+			boolean H, boolean BDmg, int DDice, int DRoll, int DDealt){
+		
+		if(isDestroyed()){	//If destroyed print message and do not make attack
+			System.out.println(destroyedMessage);
+			return;
+		}
+		
+		attacks.add(new Attack(AttackType.RANGED,BHit, HDice, HRoll, H,
+				BDmg, DDice, DRoll, DDealt));
+	}
+	
+	/**
+	 * Create a magic attack and add it to the attacks arrayList
+	 */
+	public void magicAttack(boolean BHit, int HDice, int HRoll,
+			boolean H, boolean BDmg, int DDice, int DRoll, int DDealt){
+		
+		if(isDestroyed()){	//If destroyed print message and do not make attack
+			System.out.println(destroyedMessage);
+			return;
+		}
+		
+		attacks.add(new Attack(AttackType.MAGIC,BHit, HDice, HRoll, H,
+				BDmg, DDice, DRoll, DDealt));
 	}
 }

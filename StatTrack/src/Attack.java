@@ -1,5 +1,9 @@
 import java.util.*;
 
+/**
+ * @author kylehoff
+ * Class to store dice roll and specifc data for any type of attack
+ */
 public class Attack {
 
 	public AttackType attackType;
