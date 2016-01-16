@@ -59,6 +59,24 @@ public class ArmyList {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		String str = "";
+		for(ModelUnit m: armyList){
+			str += m.name + "\n";
+		}
+		return str;
+	}
 	
+	public static void main(String[] args){
+		ArmyList list = new ArmyList();
+		list.addModelUnit("PStryker");
+		list.addModelUnit("Storwall");
+		list.addModelUnit("Lancer");
+		list.addModelUnit("Boomhowlers");
+		list.addModelUnit("Tempest Blazers");
+		System.out.println(list);
+	}
 	
 }
