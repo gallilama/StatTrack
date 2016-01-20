@@ -131,7 +131,7 @@ public class Attack implements Comparable{
 		ArrayList<Attack> attacks = new ArrayList<Attack>();
 
 		
-		for(int i = 0; i < 8; i++){
+		for(int i = 0; i < 20; i++){
 			boolean boostHit = rand.nextBoolean();
 			int hitDice = rand.nextInt(1) + 2;
 			if(boostHit)
@@ -173,9 +173,16 @@ public class Attack implements Comparable{
 //			//System.out.println(a);
 //		}
 		
+		System.out.println(AttackType.MELEE.ordinal());
+		System.out.println(AttackType.RANGED.ordinal());
+		System.out.println(AttackType.MAGIC.ordinal());
+		System.out.println();
+		
 		for(Attack a: attacks){
 			System.out.println(a);
 		}
+		
+		System.out.println();
 		
 		Collections.sort(attacks);
 		
@@ -187,9 +194,9 @@ public class Attack implements Comparable{
 	@Override
 	public int compareTo(Object arg0) {
 		Attack newAttack = (Attack) arg0;
-		if(attackType.compareTo(newAttack.attackType) == -1)
+		if(attackType.compareTo(newAttack.attackType) < 0)
 			return -1;
-		else if(attackType.compareTo(newAttack.attackType) == 1)
+		else if(attackType.compareTo(newAttack.attackType) > 0)
 			return 1;
 		if(hitDice < newAttack.hitDice)
 			return -1;
