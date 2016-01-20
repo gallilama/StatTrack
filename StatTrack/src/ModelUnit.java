@@ -14,6 +14,10 @@ public class ModelUnit {
 	public int meleeAttacks = 0;
 	public int rangedAttacks = 0;
 	public int magicAttacks = 0;
+	public int minHitDieRolled = -1;
+	public int maxHitDieRolled = -1;
+	public int minDmgDieRolled = -1;
+	public int maxDmgDieRolled = -1;
 	
 	
 	// CONSTRUCTORS
@@ -41,6 +45,34 @@ public class ModelUnit {
 	}
 	
 	/**
+	 * Determine the minimum and maximum dice rolled to hit and to damage
+	 * @param HDice number of dice rolled to hit
+	 * @param hit if the model was hit or not
+	 * @param DDice number of dice rolled to damage
+	 */
+	public void getMinMaxRolls(int HDice, boolean hit, int DDice){
+		if(minHitDieRolled == -1)
+			minHitDieRolled = HDice;
+		else if(minHitDieRolled > HDice)
+			minHitDieRolled = HDice;
+		if(maxHitDieRolled == -1)
+			maxHitDieRolled = HDice;
+		else if(maxHitDieRolled < HDice)
+			maxHitDieRolled = HDice;
+		
+		if(hit){
+			if(minDmgDieRolled == -1)
+				minDmgDieRolled = HDice;
+			else if(minDmgDieRolled > HDice)
+				minDmgDieRolled = HDice;
+			if(maxDmgDieRolled == -1)
+				maxDmgDieRolled = HDice;
+			else if(maxDmgDieRolled < HDice)
+				maxDmgDieRolled = HDice;
+		}
+	}
+	
+	/**
 	 * Create a melee attack and add it to the attacks arrayList
 	 */
 	public void meleeAttack(boolean BHit, int HDice, int HRoll,
@@ -50,6 +82,8 @@ public class ModelUnit {
 			System.out.println(destroyedMessage);
 			return;
 		}
+		
+		getMinMaxRolls(HDice, H, DDice);
 		
 		attacks.add(new Attack(AttackType.MELEE,BHit, HDice, HRoll, H,
 				BDmg, DDice, DRoll, DDealt));

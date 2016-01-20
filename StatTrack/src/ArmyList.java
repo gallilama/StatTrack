@@ -63,6 +63,7 @@ public class ArmyList {
 	@Override
 	public String toString() {
 		String str = "";
+		str += armyName +"\n\n";
 		for(ModelUnit m: armyList){
 			str += m.name + "\n";
 		}
@@ -70,7 +71,7 @@ public class ArmyList {
 	}
 	
 	public static void main(String[] args){
-		ArmyList list = new ArmyList();
+		ArmyList list = new ArmyList("Prime Stryker 1");
 		list.addModelUnit("PStryker");
 		list.addModelUnit("Storwall");
 		list.addModelUnit("Lancer");
