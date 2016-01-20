@@ -4,7 +4,7 @@ import java.util.*;
  * @author kylehoff
  * Class to store dice roll and specifc data for any type of attack
  */
-public class Attack {
+public class Attack implements Comparable{
 
 	public AttackType attackType;
 	public boolean hit = false;				// Did this attack hit its target
@@ -128,7 +128,10 @@ public class Attack {
 	public static void main(String args[]){
 		Random rand = new Random();
 		
-		for(int i = 0; i < 25; i++){
+		ArrayList<Attack> attacks = new ArrayList<Attack>();
+
+		
+		for(int i = 0; i < 8; i++){
 			boolean boostHit = rand.nextBoolean();
 			int hitDice = rand.nextInt(1) + 2;
 			if(boostHit)
@@ -148,23 +151,63 @@ public class Attack {
 				dmgDealt = rand.nextInt(dmgDice * 6 - dmgDice) + dmgDice;
 			}
 			Attack a = new Attack(AttackType.getRandom(), boostHit, hitDice, hitRoll, hit, boostDmg, dmgDice, dmgRoll, dmgDealt);
+			attacks.add(a);
+			//System.out.println(a);
+		}
+		
+		
+//		for (int i = 0; i < 7; i++){
+//			int hitDice = 2;
+//			int hitRoll = rand.nextInt(hitDice * 6 - hitDice) + hitDice;
+//			boolean hit = rand.nextBoolean();
+//			int dmgDice = 0;
+//			int dmgRoll = 0;
+//			int dmgDealt = 0;
+//			if(hit){;
+//				dmgDice = 2;
+//				dmgRoll = rand.nextInt(dmgDice * 6 - dmgDice) + dmgDice + 1;
+//				dmgDealt = rand.nextInt(dmgDice * 6 - dmgDice) + dmgDice;
+//			}
+//			Attack a = new Attack(AttackType.getRandom(), hitRoll, hit, dmgRoll, dmgDealt);
+//			attacks.add(a);
+//			//System.out.println(a);
+//		}
+		
+		for(Attack a: attacks){
 			System.out.println(a);
 		}
 		
-		for (int i = 0; i < 25; i++){
-			int hitDice = 2;
-			int hitRoll = rand.nextInt(hitDice * 6 - hitDice) + hitDice;
-			boolean hit = rand.nextBoolean();
-			int dmgDice = 0;
-			int dmgRoll = 0;
-			int dmgDealt = 0;
-			if(hit){;
-				dmgDice = 2;
-				dmgRoll = rand.nextInt(dmgDice * 6 - dmgDice) + dmgDice + 1;
-				dmgDealt = rand.nextInt(dmgDice * 6 - dmgDice) + dmgDice;
-			}
-			Attack a = new Attack(AttackType.getRandom(), hitRoll, hit, dmgRoll, dmgDealt);
+		Collections.sort(attacks);
+		
+		for(Attack a: attacks){
 			System.out.println(a);
 		}
+	}
+
+	@Override
+	public int compareTo(Object arg0) {
+		Attack newAttack = (Attack) arg0;
+		if(attackType.compareTo(newAttack.attackType) == -1)
+			return -1;
+		else if(attackType.compareTo(newAttack.attackType) == 1)
+			return 1;
+		if(hitDice < newAttack.hitDice)
+			return -1;
+		else if(hitDice > newAttack.hitDice)
+			return 1;
+		else{
+			if(dmgDice < newAttack.dmgDice)
+				return -1;
+			else if(dmgDice > newAttack.dmgDice)
+				return 1;
+			else{
+				if(dmgDealt < newAttack.dmgDealt)
+					return -1;
+				else if(dmgDealt > newAttack.dmgDealt)
+					return 1;
+			}
+		}
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
