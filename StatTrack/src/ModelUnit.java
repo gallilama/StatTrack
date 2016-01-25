@@ -19,6 +19,11 @@ public class ModelUnit {
 	public int minDmgDieRolled = -1;
 	public int maxDmgDieRolled = -1;
 	
+	public int enemyModelsDestroyed = 0;
+	public int enemyBeastsJacksDestroyed = 0;
+	public int enemyCasterDestroyed = 0;
+	public int modelsDestroyed = 0;
+	
 	
 	// CONSTRUCTORS
 	
@@ -30,6 +35,39 @@ public class ModelUnit {
 	
 	
 	// METHODS
+	
+	public void enemyModelsDestroyed(){
+		if(isDestroyed()){	//If destroyed print message and do nothing
+			System.out.println(destroyedMessage);
+			return;
+		}
+		enemyModelsDestroyed++;
+	}
+	
+	public void enemyBeastsJacksDestroyed(){
+		if(isDestroyed()){	//If destroyed print message and do nothing
+			System.out.println(destroyedMessage);
+			return;
+		}
+		enemyBeastsJacksDestroyed++;
+	}
+	
+	public void enemyCasterDestroyed(){
+		if(isDestroyed()){	//If destroyed print message and do nothing
+			System.out.println(destroyedMessage);
+			return;
+		}
+		enemyCasterDestroyed++;
+	}
+	
+	
+	public void modelDestroyed(){
+		if(isDestroyed()){	//If destroyed print message and do nothing
+			System.out.println(destroyedMessage);
+			return;
+		}
+		modelsDestroyed++;
+	}
 	
 	/**
 	 * Set the model's status to destroyed
