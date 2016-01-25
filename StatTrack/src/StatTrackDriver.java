@@ -1,41 +1,72 @@
 import java.util.*;
 public class StatTrackDriver {
 
-	public static void main(String[] args){
-		
-		ArrayList<ArmyList> Lists = new ArrayList<ArmyList>();
-		
-		// Print opening messages
-		System.out.println("Welcome to StatTrack!\n");
+	Scanner scan = new Scanner(System.in);
+	ArrayList<ArmyList> Lists = new ArrayList<ArmyList>();
+	
+	// CONSTRUCTORS
+	
+	public StatTrackDriver(){
+		openingScreenView();
+	}
+	
+	
+	// METHODS
+	
+	public void openingScreenView(){
+		System.out.println("StatTrack\n");
 		System.out.println("B - Build an army list\n"
-				+ "V - View army lists");
-
-		Scanner scan = new Scanner(System.in);
+				+ "V - View army lists\n"
+				+ "Q - Quit");
 		
-		// If build lists option if selected
-		if(scan.next().toUpperCase().equals("B")){
-			System.out.println("Enter the name of this list.\n");
-			String listName = scan.next();
-			ArmyList list = new ArmyList(listName);
-			String addModUnit = "y";
-			while(addModUnit.equalsIgnoreCase("y")){
-				System.out.println("Would you like to add a Model/Unit to this list?\n"
-						+ "y = yes, n = no\n");
-				addModUnit = scan.next();
-				if(addModUnit.equalsIgnoreCase("n"))
-					continue;
-				
-				System.out.println("Enter the name of the model or unit to add.\n");
-				list.addModelUnit(scan.next());	
-				System.out.println(list);
-			}
+		String input = scan.next();
+		
+		if(input.equalsIgnoreCase("b"))
+			listBuilderView();
+		else if(input.equalsIgnoreCase("v"))
+			viewListsView();
+		else if(input.equalsIgnoreCase("q"))
+			quit();
+	}
+	
+	public void listBuilderView(){
+		System.out.println("Enter the name of this list.\n");
+		String listName = scan.nextLine();
+		listName = scan.nextLine();
+		ArmyList list = new ArmyList(listName);
+		Lists.add(list);
+		String addModUnit = "";
+		System.out.println("Add models and units to the list. Type \"Done\" to finish\n\n");
+		addModUnit = scan.nextLine();
+		System.out.println(list.armyName);
+		while(!addModUnit.equals("DONE")){
+			list.addModelUnit(addModUnit);
+			System.out.println(addModUnit);
+			addModUnit = scan.nextLine();
 		}
-		// If view lists option is selected
-		else if(scan.next().toUpperCase().equals("V")){
-			for(ArmyList l: Lists){
-				System.out.println(l.armyName);
-			}
+		openingScreenView();
+	}
+	
+	public void viewListsView(){
+		int index = 1;
+		for(ArmyList l: Lists){
+			System.out.println(index + " - " + l.armyName);
+			index++;
 		}
+		index = scan.nextInt() - 1;
+		armyView(index);
+	}
+	
+	public void armyView(int index){
+		
+	}
+	
+	public void quit(){
+		System.exit(0);
+	}
+	
+	public static void main(String[] args){
+		StatTrackDriver driver = new StatTrackDriver();
 	}
 	
 }
