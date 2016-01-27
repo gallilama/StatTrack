@@ -13,6 +13,9 @@ public class StatTrackDriver {
 	
 	// METHODS
 	
+	/**
+	 * Load up view for the application
+	 */
 	public void openingScreenView(){
 		System.out.println("StatTrack\n");
 		System.out.println("B - Build an army list\n"
@@ -29,6 +32,9 @@ public class StatTrackDriver {
 			quit();
 	}
 	
+	/**
+	 * List builder view for application
+	 */
 	public void listBuilderView(){
 		System.out.println("Enter the name of this list.\n");
 		String listName = scan.nextLine();
@@ -47,6 +53,9 @@ public class StatTrackDriver {
 		openingScreenView();
 	}
 	
+	/**
+	 * List viewer view
+	 */
 	public void viewListsView(){
 		int index = 1;
 		for(ArmyList l: Lists){
@@ -57,10 +66,25 @@ public class StatTrackDriver {
 		armyView(index);
 	}
 	
+	/**
+	 * List view
+	 * @param index the index of the list to view
+	 */
 	public void armyView(int index){
 		
 	}
 	
+	/**
+	 * make attack view
+	 * @param index the index of the ModelUnit making attacks
+	 */
+	public void attackView(int index){
+		
+	}
+	
+	/**
+	 * Exit the system
+	 */
 	public void quit(){
 		System.exit(0);
 	}
