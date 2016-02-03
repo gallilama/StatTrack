@@ -225,6 +225,9 @@ public class Attack implements Comparable{
 	@Override
 	public int compareTo(Object arg0) {
 		Attack newAttack = (Attack) arg0;
+		if(this.equals(newAttack))	// If equal
+			return 0;
+		
 		if(attackType.compareTo(newAttack.attackType) < 0)
 			return -1;
 		else if(attackType.compareTo(newAttack.attackType) > 0)
@@ -245,7 +248,6 @@ public class Attack implements Comparable{
 					return 1;
 			}
 		}
-		// TODO Auto-generated method stub
 		return 0;
 	}
 }
