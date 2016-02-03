@@ -14,23 +14,23 @@ public class testAttack {
 	@Test
 	public void testCheckData_InvalidHitAndDmgDice(){
 		Attack a = new Attack(AttackType.MELEE, false, -100, 10, true, false, 2, 6, 2);
-		assertTrue("checkData should return false",
+		assertFalse("checkData should return false",
 				a.checkData(a.hitDice, a.hitRoll, a.dmgDice, a.dmgRoll, a.dmgDealt));
 		a.setHitDice(-1);
-		assertTrue("checkData should return false",
+		assertFalse("checkData should return false",
 				a.checkData(a.hitDice, a.hitRoll, a.dmgDice, a.dmgRoll, a.dmgDealt));
 		a.setHitDice(0);
-		assertTrue("checkData should return false",
+		assertFalse("checkData should return false",
 				a.checkData(a.hitDice, a.hitRoll, a.dmgDice, a.dmgRoll, a.dmgDealt));
 		a.setHitDice(1);
 		a.setDmgDice(-100);
-		assertTrue("checkData should return false",
+		assertFalse("checkData should return false",
 				a.checkData(a.hitDice, a.hitRoll, a.dmgDice, a.dmgRoll, a.dmgDealt));
 		a.setDmgDice(-1);
-		assertTrue("checkData should return false",
+		assertFalse("checkData should return false",
 				a.checkData(a.hitDice, a.hitRoll, a.dmgDice, a.dmgRoll, a.dmgDealt));
 		a.setDmgDice(0);
-		assertTrue("checkData should return false",
+		assertFalse("checkData should return false",
 				a.checkData(a.hitDice, a.hitRoll, a.dmgDice, a.dmgRoll, a.dmgDealt));
 	}
 	
