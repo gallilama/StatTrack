@@ -13,7 +13,7 @@ public class testAttack {
 	
 	@Test
 	public void testCheckData_InvalidHitAndDmgDice(){
-		Attack a = new Attack(AttackType.MELEE, false, -100, 10, true, false, 2, 6, 2);
+		Attack a = new Attack(AttackType.MELEE, false, -100, 5, true, false, 2, 6, 2);
 		assertFalse("checkData should return false",
 				a.checkData(a.hitDice, a.hitRoll, a.dmgDice, a.dmgRoll, a.dmgDealt));
 		a.setHitDice(-1);
@@ -22,7 +22,7 @@ public class testAttack {
 		a.setHitDice(0);
 		assertFalse("checkData should return false",
 				a.checkData(a.hitDice, a.hitRoll, a.dmgDice, a.dmgRoll, a.dmgDealt));
-		a.setHitDice(1);
+		a.setHitDice(2);
 		a.setDmgDice(-100);
 		assertFalse("checkData should return false",
 				a.checkData(a.hitDice, a.hitRoll, a.dmgDice, a.dmgRoll, a.dmgDealt));
@@ -58,7 +58,7 @@ public class testAttack {
 	
 	@Test
 	public void testCheckData_InvalidDmgRoll(){
-		Attack a = new Attack(AttackType.MELEE, false, 2, 6, true, false, 2, -1, 2);
+		Attack a = new Attack(AttackType.MELEE, false, -1, 6, true, false, 2, 6, 2);
 		assertFalse("checkData should return false",
 				a.checkData(a.hitDice, a.hitRoll, a.dmgDice, a.dmgRoll, a.dmgDealt));
 		a.setHitRoll(0);
@@ -76,5 +76,13 @@ public class testAttack {
 		a.setHitRoll(100);
 		assertFalse("checkData should return false",
 				a.checkData(a.hitDice, a.hitRoll, a.dmgDice, a.dmgRoll, a.dmgDealt));
+	}
+	
+	@Test
+	public void testEquals(){
+		Attack a = new Attack(AttackType.MELEE, false, 2, 6, true, false, 2, 6, 2);
+		Attack b = new Attack(AttackType.MELEE, false, 2, 6, true, false, 2, 6, 2);
+		assertTrue(a.equals(b));
+		
 	}
 }
