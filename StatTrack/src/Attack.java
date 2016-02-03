@@ -41,8 +41,9 @@ public class Attack implements Comparable{
 			boolean BDmg, int DDice, int DRoll, int DDealt){
 		
 		if(!checkData(HDice, HRoll, DDice, DRoll, DDealt)){
-			System.out.println("Invalid data was passed. Please input valid data");
-			System.exit(0);
+			//throw new InvalidInputException("Invalid data was passed. Please input valid data");
+//			System.out.println("Invalid data was passed. Please input valid data");
+//			System.exit(0);
 		}
 			
 		attackType = AType;
@@ -125,7 +126,7 @@ public class Attack implements Comparable{
 	
 	// MAIN for testing
 	
-	public static void main(String args[]){
+	public static void main(String args[]) throws Exception{
 		Random rand = new Random();
 		
 		ArrayList<Attack> attacks = new ArrayList<Attack>();
