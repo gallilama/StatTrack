@@ -21,15 +21,16 @@ public class StatTrackDriver {
 		System.out.println("B - Build an army list\n"
 				+ "V - View army lists\n"
 				+ "Q - Quit");
-		
+
 		String input = scan.next();
-		
-		if(input.equalsIgnoreCase("b"))
-			listBuilderView();
-		else if(input.equalsIgnoreCase("v"))
-			viewListsView();
-		else if(input.equalsIgnoreCase("q"))
-			quit();
+
+		while(!input.equalsIgnoreCase("q")){	// while the input is not quit keep scanning items
+			if(input.equalsIgnoreCase("b"))
+				listBuilderView();
+			else if(input.equalsIgnoreCase("v"))
+				viewListsView();
+			input = scan.next();
+		}
 	}
 	
 	/**
@@ -45,7 +46,7 @@ public class StatTrackDriver {
 		System.out.println("Add models and units to the list. Type \"Done\" to finish\n\n");
 		addModUnit = scan.nextLine();
 		System.out.println(list.armyName);
-		while(!addModUnit.equals("DONE")){
+		while(!addModUnit.equalsIgnoreCase("DONE")){
 			list.addModelUnit(addModUnit);
 			System.out.println(addModUnit);
 			addModUnit = scan.nextLine();
