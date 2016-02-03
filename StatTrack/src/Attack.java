@@ -193,6 +193,36 @@ public class Attack implements Comparable{
 	}
 
 	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Attack other = (Attack) obj;
+		if (attackType != other.attackType)
+			return false;
+		if (boostDmg != other.boostDmg)
+			return false;
+		if (boostHit != other.boostHit)
+			return false;
+		if (dmgDealt != other.dmgDealt)
+			return false;
+		if (dmgDice != other.dmgDice)
+			return false;
+		if (dmgRoll != other.dmgRoll)
+			return false;
+		if (hit != other.hit)
+			return false;
+		if (hitDice != other.hitDice)
+			return false;
+		if (hitRoll != other.hitRoll)
+			return false;
+		return true;
+	}
+
+	@Override
 	public int compareTo(Object arg0) {
 		Attack newAttack = (Attack) arg0;
 		if(attackType.compareTo(newAttack.attackType) < 0)
