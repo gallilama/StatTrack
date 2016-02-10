@@ -83,7 +83,7 @@ public class testAttack {
 	// Test equals method
 	
 	@Test
-	public void testEquals(){
+	public void testEquals_EqualAndNotEqual(){
 		Attack a = new Attack(AttackType.MELEE, false, 2, 6, true, false, 2, 6, 2);
 		Attack b = new Attack(AttackType.MELEE, false, 2, 6, true, false, 2, 6, 2);
 		assertTrue(a.equals(b));
@@ -239,6 +239,8 @@ public class testAttack {
 		int result = a.compareTo(b);
 		assertEquals(result, 1);
 	}
+	
+	//Equals
 	
 	@Test
 	public void testCompareTo_Equal(){
