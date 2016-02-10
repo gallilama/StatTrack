@@ -4,7 +4,7 @@
  * Enum for types of available attacks
  */
 public enum AttackType {
-	MAGIC, RANGED, MELEE;
+	MELEE, RANGED, MAGIC;
 	
 	public static AttackType getRandom() {
         return values()[(int) (Math.random() * values().length)];

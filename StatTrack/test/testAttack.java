@@ -94,6 +94,8 @@ public class testAttack {
 	
 	// Test compareTo method
 	
+	// Less than
+	
 	@Test
 	public void testCompareTo_LessThan_AttackTye(){
 		Attack a = new Attack(AttackType.RANGED, false, 2, 6, true, false, 2, 6, 2);
@@ -145,7 +147,7 @@ public class testAttack {
 	@Test
 	public void testCompareTo_LessThan_DmgDice(){
 		Attack a = new Attack(AttackType.MELEE, false, 2, 6, true, false, 2, 6, 2);
-		Attack b = new Attack(AttackType.MELEE, false, 2, 8, true, false, 3, 6, 2);
+		Attack b = new Attack(AttackType.MELEE, false, 2, 6, true, false, 3, 6, 2);
 		int result = a.compareTo(b);
 		assertEquals(result, -1);
 	}
@@ -153,24 +155,26 @@ public class testAttack {
 	@Test
 	public void testCompareTo_LessThan_DmgRoll(){
 		Attack a = new Attack(AttackType.MELEE, false, 2, 6, true, false, 2, 6, 2);
-		Attack b = new Attack(AttackType.MELEE, false, 2, 8, true, false, 2, 8, 2);
+		Attack b = new Attack(AttackType.MELEE, false, 2, 6, true, false, 2, 8, 2);
 		int result = a.compareTo(b);
 		assertEquals(result, -1);
 	}
 	
 	public void testCompareTo_LessThan_DmgDealt(){
 		Attack a = new Attack(AttackType.MELEE, false, 2, 6, true, false, 2, 6, 2);
-		Attack b = new Attack(AttackType.MELEE, false, 2, 8, true, false, 2, 6, 6);
+		Attack b = new Attack(AttackType.MELEE, false, 2, 6, true, false, 2, 6, 6);
 		int result = a.compareTo(b);
 		assertEquals(result, -1);
 	}
+	
+	// Greater than
 	
 	@Test
 	public void testCompareTo_GreaterThan_AttackTye(){
 		Attack a = new Attack(AttackType.MELEE, false, 2, 6, true, false, 2, 6, 2);
 		Attack b = new Attack(AttackType.MAGIC, false, 2, 6, true, false, 2, 6, 2);
 		int result = a.compareTo(b);
-		assertEquals(result, -1);
+		assertEquals(result, 1);
 	}
 
 	@Test
@@ -178,7 +182,7 @@ public class testAttack {
 		Attack a = new Attack(AttackType.MELEE, true, 2, 6, true, false, 2, 6, 2);
 		Attack b = new Attack(AttackType.MELEE, false, 2, 6, true, false, 2, 6, 2);
 		int result = a.compareTo(b);
-		assertEquals(result, -1);
+		assertEquals(result, 1);
 	}
 	
 	@Test
@@ -186,7 +190,7 @@ public class testAttack {
 		Attack a = new Attack(AttackType.MELEE, false, 3, 6, true, false, 2, 6, 2);
 		Attack b = new Attack(AttackType.MELEE, false, 2, 6, true, false, 2, 6, 2);
 		int result = a.compareTo(b);
-		assertEquals(result, -1);
+		assertEquals(result, 1);
 	}
 	
 	@Test
@@ -194,7 +198,7 @@ public class testAttack {
 		Attack a = new Attack(AttackType.MELEE, false, 2, 8, true, false, 2, 6, 2);
 		Attack b = new Attack(AttackType.MELEE, false, 2, 6, true, false, 2, 6, 2);
 		int result = a.compareTo(b);
-		assertEquals(result, -1);
+		assertEquals(result, 1);
 	}
 	
 	@Test
@@ -202,43 +206,46 @@ public class testAttack {
 		Attack a = new Attack(AttackType.MELEE, false, 2, 6, true, false, 2, 6, 2);
 		Attack b = new Attack(AttackType.MELEE, false, 2, 6, false, false, 2, 6, 2);
 		int result = a.compareTo(b);
-		assertEquals(result, -1);
+		assertEquals(result, 1);
 	}
 	
 	@Test
 	public void testCompareTo_GreaterThan_BoostDmg(){
 		Attack a = new Attack(AttackType.MELEE, false, 2, 6, true, true, 2, 6, 2);
-		Attack b = new Attack(AttackType.MELEE, false, 2, 8, true, false, 2, 6, 2);
+		Attack b = new Attack(AttackType.MELEE, false, 2, 6, true, false, 2, 6, 2);
 		int result = a.compareTo(b);
-		assertEquals(result, -1);
+		assertEquals(result, 1);
 	}
 	
 	@Test
 	public void testCompareTo_GreaterThan_DmgDice(){
 		Attack a = new Attack(AttackType.MELEE, false, 2, 6, true, false, 3, 6, 2);
-		Attack b = new Attack(AttackType.MELEE, false, 2, 8, true, false, 2, 6, 2);
+		Attack b = new Attack(AttackType.MELEE, false, 2, 6, true, false, 2, 6, 2);
 		int result = a.compareTo(b);
-		assertEquals(result, -1);
+		assertEquals(result, 1);
 	}
 	
 	@Test
 	public void testCompareTo_GreaterThan_DmgRoll(){
 		Attack a = new Attack(AttackType.MELEE, false, 2, 6, true, false, 2, 8, 2);
-		Attack b = new Attack(AttackType.MELEE, false, 2, 8, true, false, 2, 6, 2);
+		Attack b = new Attack(AttackType.MELEE, false, 2, 6, true, false, 2, 6, 2);
 		int result = a.compareTo(b);
-		assertEquals(result, -1);
+		assertEquals(result, 1);
 	}
 	
 	public void testCompareTo_GreaterThan_DmgDealt(){
 		Attack a = new Attack(AttackType.MELEE, false, 2, 6, true, false, 2, 6, 8);
-		Attack b = new Attack(AttackType.MELEE, false, 2, 8, true, false, 2, 6, 6);
+		Attack b = new Attack(AttackType.MELEE, false, 2, 6, true, false, 2, 6, 6);
 		int result = a.compareTo(b);
-		assertEquals(result, -1);
+		assertEquals(result, 1);
 	}
 	
 	@Test
 	public void testCompareTo_Equal(){
-		assertTrue(true);
-	}
+		Attack a = new Attack(AttackType.MELEE, false, 2, 6, true, false, 2, 6, 6);
+		Attack b = new Attack(AttackType.MELEE, false, 2, 6, true, false, 2, 6, 6);
+		int result = a.compareTo(b);
+		assertEquals(result, 0);
+		}
 	
 }
