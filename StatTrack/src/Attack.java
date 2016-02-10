@@ -228,47 +228,47 @@ public class Attack implements Comparable{
 		if(this.equals(newAttack))	// If equal
 			return 0;
 		
-		// AttackType
+		// AttackType 1
 		if(attackType.compareTo(newAttack.attackType) > 0)
 			return -1;
 		else if(attackType.compareTo(newAttack.attackType) < 0)
 			return 1;
-		// BoostHit
-		if(!boostHit && newAttack.boostHit)
-			return -1;
-		else if(boostHit && !newAttack.boostHit)
-			return 1;
-		// HitDice
-		if(hitDice < newAttack.hitDice)
-			return -1;
-		else if(hitDice > newAttack.hitDice)
-			return 1;
-		// HitRoll
-		if(hitRoll < newAttack.hitRoll)
-			return -1;
-		else if (hitRoll > newAttack.hitRoll)
-			return 1;
-		// Hit
+		// Hit 2
 		if(!hit && newAttack.hit)
 			return -1;
 		else if(hit && !newAttack.hit)
 			return 1;
-		// BoostDmg
-		if(!boostDmg && newAttack.boostDmg)
+		// HitDice 3
+		if(hitDice < newAttack.hitDice)
 			return -1;
-		else if(boostDmg && !newAttack.boostDmg)
+		else if(hitDice > newAttack.hitDice)
+			return 1;		
+		// BoostHit 4
+		if(!boostHit && newAttack.boostHit)
+			return -1;
+		else if(boostHit && !newAttack.boostHit)
 			return 1;
-		// DmgDice
+		// HitRoll 5
+		if(hitRoll < newAttack.hitRoll)
+			return -1;
+		else if (hitRoll > newAttack.hitRoll)
+			return 1;
+		// DmgDice 6
 		if(dmgDice < newAttack.dmgDice)
 			return -1;
 		else if (dmgDice > newAttack.dmgDice)
 			return 1;
-		// DmgRoll
+		// BoostDmg 7
+		if(!boostDmg && newAttack.boostDmg)
+			return -1;
+		else if(boostDmg && !newAttack.boostDmg)
+			return 1;
+		// DmgRoll 8
 		if(dmgRoll < newAttack.dmgRoll)
 			return -1;
 		else if (dmgRoll > newAttack.dmgRoll)
 			return 1;
-		// DmgDealt
+		// DmgDealt 9
 		if(dmgDealt < newAttack.dmgDealt)
 			return -1;
 		else if (dmgDealt > newAttack.dmgDealt)
