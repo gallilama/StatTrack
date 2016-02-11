@@ -69,6 +69,20 @@ public class Attack implements Comparable{
 	 * @param DDealt DRoll minus enemy model's armor value
 	 * @return
 	 */
+  // I think you should reconsider this function's arguments.
+  // This funciton is not a static funciton, you've put it in the Attack class, and it's operating
+  // concepts that seem related to Attack attributes (e.g. Attack.hitDice).
+  // Could it take no arguments, and look at the attributes of an actual instance of Attack?
+  // 
+  // Something doesn't feel right:
+  // Attack a = new Attack(..);  // I create an object
+  // a.setHitDice(2);            // I set object properties
+  // a.checkData(a.hitDice, ..); // I then have to pass object properties back into itself...
+  //
+  // Versus
+  // Attack a = new Attack(..);  // I create an object
+  // a.setHitDice(2);            // I set object properties
+  // a.checkData();              // checkData knows what object properties to use in its logic. 
 	public boolean checkData(int HDice, int HRoll, int DDice, int DRoll, int DDealt){
 		if(HRoll < 1 || DDice < 1)
 			return false;
@@ -126,6 +140,7 @@ public class Attack implements Comparable{
 	
 	// MAIN for testing
 	
+  // You should replace this with Unit Tests, a separate class to run integration tests, or both.
 	public static void main(String args[]) throws Exception{
 		Random rand = new Random();
 		
